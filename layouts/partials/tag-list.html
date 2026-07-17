@@ -1,0 +1,9 @@
+{{ with . }}
+  <p class="tag-list" aria-label="Tags">
+    <span class="tag-list__label">taxonomy</span>
+    {{ range $index, $tag := . }}
+      {{ if gt $index 0 }}<span class="tag-list__sep">/</span>{{ end }}
+      <a href="{{ (printf "/tags/%s/" ($tag | urlize)) | relURL }}">{{ $tag }}</a>
+    {{ end }}
+  </p>
+{{ end }}

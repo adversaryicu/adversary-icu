@@ -1,0 +1,6 @@
+# Local editorial and working notes; never publish or commit these.
+.local/
+
+# Hugo build output and temporary build lock.
+public/
+.hugo_build.lock

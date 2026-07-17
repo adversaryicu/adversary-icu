@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <section class="page-shell">
+    <div class="site-shell site-shell--reading">
+      <header class="section-page-header">
+        <p class="eyebrow">TAGS //</p>
+        <h1 class="section-page-title">Taxonomy Index</h1>
+        <div class="section-page-copy">
+          <p>Browse reports and notes by family, actor, technique, malware class, or workflow marker.</p>
+        </div>
+      </header>
+      <div class="taxonomy-list">
+        {{ range .Data.Terms.ByCount }}
+          <article class="tag-overview">
+            <h2 class="taxonomy-item__title"><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></h2>
+            <span class="tag-overview__count">{{ .Count }} entries</span>
+          </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

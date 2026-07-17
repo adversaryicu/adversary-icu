@@ -1,0 +1,59 @@
+{{ define "main" }}
+  {{ $reports := where site.RegularPages "Section" "reports" }}
+  {{ $notes := where site.RegularPages "Section" "notes" }}
+  {{ $latestReport := first 1 ($reports.ByDate.Reverse) }}
+  {{ $archiveReports := first 6 (after 1 ($reports.ByDate.Reverse)) }}
+  {{ $recentNotes := first 4 ($notes.ByDate.Reverse) }}
+  <section class="page-section">
+    <div class="site-shell site-shell--home">
+      {{ partial "section-header.html" (dict "number" "01" "title" "Latest Report" "command" "cat ./reports/latest") }}
+      {{ with index $latestReport 0 }}
+        <article class="feature-report">
+          <p class="entry-marker">Filed Report</p>
+          {{ partial "metadata.html" (dict "context" . "kind" "report filed") }}
+          <h2 class="feature-report__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          <p class="feature-report__summary">{{ with .Params.summary }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}</p>
+          <a class="feature-report__cta" href="{{ .RelPermalink }}">Open report --&gt;</a>
+        </article>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="page-section page-section--notes">
+    <div class="site-shell site-shell--home">
+      {{ partial "section-header.html" (dict "number" "02" "title" "Recent Notes" "command" "ls ./notes/") }}
+      <div class="note-list">
+        {{ range $index, $note := $recentNotes }}
+          <article class="note-item">
+            <p class="note-item__eyebrow">LOG {{ printf "%02d" (add $index 1) }}</p>
+            <h3 class="note-item__title"><a href="{{ $note.RelPermalink }}" data-glitch="{{ $note.Title }}">{{ $note.Title }}</a></h3>
+            <p class="note-item__summary">{{ with $note.Params.summary }}{{ . }}{{ else }}{{ $note.Summary | plainify }}{{ end }}</p>
+            {{ partial "metadata.html" (dict "context" $note "kind" "analyst note") }}
+          </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section page-section--archive">
+    <div class="site-shell site-shell--home">
+      {{ partial "section-header.html" (dict "number" "03" "title" "Archive" "command" "cat ./reports/* --sort=date --order=desc") }}
+      <div class="archive-list archive-list--index">
+        {{ range $archiveReports }}
+          {{ partial "content-list-item.html" (dict "page" . "kind" "filed report" "class" "archive-item--index") }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section page-section--tags">
+    <div class="site-shell site-shell--home">
+      {{ partial "section-header.html" (dict "number" "04" "title" "Tags" "command" "ls ./tags/") }}
+      <div class="tag-cloud">
+        {{ range site.Taxonomies.tags.ByCount }}
+          <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <span class="tag-overview__count">({{ .Count }})</span></a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

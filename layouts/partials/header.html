@@ -1,0 +1,19 @@
+{{ $latestEntry := index (first 1 (site.RegularPages.ByDate.Reverse)) 0 }}
+<header class="site-header">
+  <div class="site-shell site-header__inner">
+    <div class="site-brand">
+      <a href="{{ "/" | relURL }}" class="site-brand__mark">ADVERSARY ICU</a>
+      <p class="site-brand__descriptor">{{ site.Params.description }}</p>
+      <p class="site-brand__meta">
+        <span>Scope // samples / delivery chains / tradecraft</span>
+        <span>Archive // active</span>
+        <span>UPDATED // {{ with $latestEntry }}{{ .Date.Format "2006-01-02" }}{{ else }}{{ now.Format "2006-01-02" }}{{ end }}</span>
+      </p>
+    </div>
+    <nav class="site-nav" aria-label="Primary">
+      {{ range site.Menus.main }}
+        <a class="site-nav__link{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }} is-active{{ end }}" href="{{ .URL | relURL }}">{{ .Name }}</a>
+      {{ end }}
+    </nav>
+  </div>
+</header>

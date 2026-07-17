@@ -1,0 +1,62 @@
+baseURL = "https://adversary.icu/"
+languageCode = "en-us"
+title = "Adversary ICU"
+enableRobotsTXT = true
+pluralizelisttitles = false
+summaryLength = 28
+
+[params]
+  description = "Field Notes on Malware, Campaigns, and Adversary Tradecraft"
+  publicationType = "publication"
+  status = "active"
+  focus = "malware reports, analyst notes, follow-ups"
+  github = "https://github.com/adversaryicu"
+
+[taxonomies]
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+    guessSyntax = true
+    lineNos = false
+    style = "github-dark"
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+  [[menu.main]]
+    name = "Reports"
+    pageRef = "/reports"
+    weight = 20
+  [[menu.main]]
+    name = "Notes"
+    pageRef = "/notes"
+    weight = 30
+  [[menu.main]]
+    name = "Tags"
+    pageRef = "/tags"
+    weight = 40
+  [[menu.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 50
+  [[menu.main]]
+    name = "RSS"
+    url = "/index.xml"
+    weight = 60

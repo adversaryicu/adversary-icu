@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <article class="page-shell page-shell--article">
+    <header class="article-header">
+      <div class="site-shell site-shell--reading">
+        <p class="eyebrow">REPORT //</p>
+        <h1 class="article-title">{{ .Title }}</h1>
+        {{ with .Params.dek }}<p class="article-dek">{{ . }}</p>{{ end }}
+        {{ partial "metadata.html" (dict "context" . "kind" "REPORT") }}
+      </div>
+    </header>
+    <div class="site-shell site-shell--reading prose">
+      {{ .Content }}
+    </div>
+  </article>
+{{ end }}

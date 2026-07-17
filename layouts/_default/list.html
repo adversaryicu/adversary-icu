@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <section class="page-shell">
+    <div class="site-shell site-shell--reading">
+      <header class="section-page-header">
+        <p class="eyebrow">SECTION //</p>
+        <h1 class="section-page-title">{{ .Title }}</h1>
+        {{ with .Content }}<div class="section-page-copy prose">{{ . }}</div>{{ end }}
+      </header>
+      <div class="archive-list">
+        {{ range .Pages.ByDate.Reverse }}
+          {{ partial "content-list-item.html" (dict "page" .) }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

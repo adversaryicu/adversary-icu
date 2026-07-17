@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <section class="page-shell page-shell--reports">
+    <div class="site-shell site-shell--reading">
+      <header class="section-page-header">
+        <p class="eyebrow">Filed Reports</p>
+        <h1 class="section-page-title">Filed Reports</h1>
+        <div class="section-page-copy">
+          <p>Long-form writeups covering malware samples, delivery paths, execution chains, and defensive takeaways. These entries are treated as filed analytical artifacts rather than rolling posts.</p>
+        </div>
+      </header>
+      <div class="archive-list">
+        {{ range .Pages.ByDate.Reverse }}
+          {{ partial "content-list-item.html" (dict "page" . "kind" "filed report" "class" "archive-item--report") }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <section class="page-shell">
+    <div class="site-shell site-shell--reading">
+      <header class="section-page-header">
+        <p class="eyebrow">TAG //</p>
+        <h1 class="section-page-title">{{ .Title }}</h1>
+        <div class="section-page-copy">
+          <p>{{ len .Pages }} entries filed under this tag.</p>
+        </div>
+      </header>
+      <div class="archive-list">
+        {{ range .Pages.ByDate.Reverse }}
+          {{ partial "content-list-item.html" (dict "page" . "kind" (upper .Section)) }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

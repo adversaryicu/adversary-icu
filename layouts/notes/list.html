@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <section class="page-shell page-shell--notes-index">
+    <div class="site-shell site-shell--reading">
+      <header class="section-page-header">
+        <p class="eyebrow">Analyst Notes</p>
+        <h1 class="section-page-title">Analyst Notes</h1>
+        <div class="section-page-copy">
+          <p>Shorter entries for follow-ups, triage observations, and small shifts in tradecraft worth logging publicly. These entries are meant to read like dispatches from an active analysis desk.</p>
+        </div>
+      </header>
+      <div class="archive-list archive-list--notes">
+        {{ range .Pages.ByDate.Reverse }}
+          {{ partial "content-list-item.html" (dict "page" . "kind" "analyst note" "class" "archive-item--note") }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

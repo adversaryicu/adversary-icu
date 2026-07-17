@@ -1,0 +1,10 @@
+{{ $kind := .kind | default "ENTRY" }}
+{{ $date := .context.Date.Format "2006-01-02" }}
+{{ $reading := cond (gt .context.ReadingTime 0) (printf "%d min read" .context.ReadingTime) "brief" }}
+<div class="meta-line">
+  <span>{{ $kind }}</span>
+  <span>/</span>
+  <time datetime="{{ .context.Date.Format "2006-01-02" }}">{{ $date }}</time>
+  <span>/</span>
+  <span>{{ $reading }}</span>
+</div>

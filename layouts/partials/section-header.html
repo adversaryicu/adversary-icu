@@ -1,0 +1,5 @@
+<div class="section-heading">
+  <p class="section-heading__label">{{ .number }}</p>
+  <h2 class="section-heading__title">{{ .title }}</h2>
+  {{ with .command }}<p class="section-heading__utility">$ {{ . }}</p>{{ end }}
+</div>

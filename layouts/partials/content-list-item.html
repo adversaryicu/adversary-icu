@@ -1,0 +1,15 @@
+{{ $page := .page }}
+{{ $kind := .kind | default (upper $page.Section) }}
+{{ $itemClass := .class | default "" }}
+<article class="archive-item{{ if $itemClass }} {{ $itemClass }}{{ end }}">
+  <div class="archive-item__header">
+    {{ partial "metadata.html" (dict "context" $page "kind" $kind) }}
+    <h3 class="archive-item__title"><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h3>
+  </div>
+  {{ with $page.Params.summary }}
+    <p class="archive-item__summary">{{ . }}</p>
+  {{ else }}
+    <p class="archive-item__summary">{{ $page.Summary | plainify }}</p>
+  {{ end }}
+  {{ partial "tag-list.html" $page.Params.tags }}
+</article>
