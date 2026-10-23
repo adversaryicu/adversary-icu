@@ -1,5 +1,5 @@
 baseURL = "https://adversary.icu/"
-languageCode = "en-us"
+locale = "en-us"
 title = "Adversary ICU"
 enableRobotsTXT = true
 pluralizelisttitles = false
@@ -26,7 +26,9 @@ summaryLength = 28
     [markup.goldmark.renderer]
       unsafe = true
   [markup.highlight]
-    noClasses = false
+    # Inline Chroma styles (github-dark) so highlighted code renders without a
+    # separate Chroma stylesheet; .prose pre supplies the code-block chrome.
+    noClasses = true
     guessSyntax = true
     lineNos = false
     style = "github-dark"

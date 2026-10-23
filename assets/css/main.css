@@ -690,6 +690,8 @@ hr {
   padding: 12px 10px;
   vertical-align: top;
   text-align: left;
+  /* Keep wide IOC tables readable on narrow screens; body clips overflow-x. */
+  overflow-wrap: anywhere;
 }
 
 .prose th {
