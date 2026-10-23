@@ -1,9 +1,10 @@
 baseURL = "https://adversary.icu/"
-# Use languageCode (not locale) and site.LanguageCode (not site.Language.Locale):
-# the Cloudflare Workers build image auto-detects Hugo 0.146.5, where the
-# `locale` key and `Language.Locale` method do not exist (added in v0.158.0).
-# Revisit once the build environment pins Hugo >= 0.158.0.
-languageCode = "en-us"
+# locale + site.Language.Locale require Hugo >= 0.158.0. The Cloudflare
+# Workers build environment pins Hugo via the HUGO_VERSION build variable
+# (currently 0.168.0). If a build ever fails with "can't evaluate field
+# Locale", the HUGO_VERSION variable was lost from the build settings —
+# restore it, or temporarily fall back to languageCode / site.LanguageCode.
+locale = "en-us"
 title = "Adversary ICU"
 enableRobotsTXT = true
 pluralizelisttitles = false
