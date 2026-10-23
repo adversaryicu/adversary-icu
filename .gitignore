@@ -4,3 +4,9 @@
 # Hugo build output and temporary build lock.
 public/
 .hugo_build.lock
+
+# Local research workspace; never publish or commit these.
+/research/
+
+# Local maintenance audit; never publish or commit this.
+/HUGO_MAINTENANCE_AUDIT.md
