@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# Guard: block publication of the private research workspace and the local
-# maintenance audit.
+# Guard: block publication of the private research workspace, the local
+# maintenance reference documents, and the local maintenance audit.
 #
 # Usage: scripts/check-private-paths.sh [ASSET_DIR]
 #
@@ -30,6 +30,7 @@ fi
 PROTECTED_PATHS=(
   "research"
   "research/_template"
+  "maintenance"
   "HUGO_MAINTENANCE_AUDIT.md"
   "research/_template/sources.md"
   "research/_template/research-brief.md"
@@ -71,9 +72,9 @@ done < <(find "${ASSET_DIR}" -type f \( -false ${find_args[@]} \) -print0)
 if [ "${fail}" -ne 0 ]; then
   {
     echo ""
-    echo "FAILED: private research or audit material would be published."
-    echo "These files must stay in /research/ (git-ignored) or at the repository"
-    echo "root (HUGO_MAINTENANCE_AUDIT.md, git-ignored) and must never enter"
+    echo "FAILED: private research, maintenance, or audit material would be published."
+    echo "These files must stay in /research/, /maintenance/, or at the repository"
+    echo "root (HUGO_MAINTENANCE_AUDIT.md) — all git-ignored — and must never enter"
     echo "Hugo content, static directories, or the deployment asset directory."
     echo "Remove the files from the asset directory, then rebuild."
   } >&2

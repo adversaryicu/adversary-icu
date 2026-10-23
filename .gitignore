@@ -8,5 +8,8 @@ public/
 # Local research workspace; never publish or commit these.
 /research/
 
+# Local maintenance reference documents; never publish or commit these.
+/maintenance/
+
 # Local maintenance audit; never publish or commit this.
 /HUGO_MAINTENANCE_AUDIT.md
